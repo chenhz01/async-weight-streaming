@@ -2,6 +2,8 @@
 
 Read files in fixed-size blocks under a hard memory budget — never slurp the whole thing. A tiny stdlib streaming layer for agent pipelines that touch large files. If your workflow processes multi-megabyte logs, model weights, or OCR sources inside a token/ RAM-limited agent loop, this turns "load then process" into "stream then discard"; if you only handle small config files, keep using plain `open().read()`.
 
+<p align="center"><img src="docs/demo.gif" alt="demo" width="720"></p>
+
 ## Problem
 
 The industry reflex for big models used to be "your VRAM must fit the whole model" — until inference engines started streaming weight blocks into memory on demand, decoupling memory footprint from file size. That same decoupling is missing in most agent data pipelines: scripts read entire logs, documents, and downloaded artifacts into one buffer, then wonder why the agent's RAM ceiling and context budget explode.
